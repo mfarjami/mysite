@@ -9,3 +9,5 @@ class AdminPost(admin.ModelAdmin):
     list_display = ('title', 'counted_views', 'status', 'created_date', 'published_date')
     list_filter = ('status',)
     search_fields = ('title', 'content')
+
+

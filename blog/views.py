@@ -11,3 +11,7 @@ def blog_view(request):
 def blog_single(request, pk):
     post = get_object_or_404(Post, pk=pk, status=1)
     return render(request, 'blog/blog-single.html', {'post': post})
+
+def blog_category(request, cat_name):
+    posts = Post.objects.filter(status=True, category__name=cat_name)
+    return render(request, 'blog/blog-home.html', {'posts': posts})

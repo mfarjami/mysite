@@ -1,4 +1,3 @@
-from unicodedata import category
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 # Create your views here.
@@ -16,3 +15,11 @@ def blog_view(request, **kwargs):
 def blog_single(request, pk):
     post = get_object_or_404(Post, pk=pk, status=1)
     return render(request, 'blog/blog-single.html', {'post': post})
+
+def blog_search(request):
+    posts=Post.objects.filter(status=True)
+    if request.method == 'GET':
+        if s := request.Get.get('q'):
+            posts = posts.filter(content__contains=s)
+    context = {'posts': posts}
+    return render(request, 'blog/blog-home.html', context)

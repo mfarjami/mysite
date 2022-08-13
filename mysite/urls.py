@@ -21,6 +21,7 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', include('robots.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('captcha/', include('captcha.urls')),
 
 ] 
 

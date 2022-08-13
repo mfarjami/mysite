@@ -23,7 +23,7 @@ def contact_view(request):
             messages.error(request, "Your message did't submitted")
     else:
         form = ContactForm()
-    return render(request, 'website/contact.html')
+    return render(request, 'website/contact.html', {'form': form})
 
 def newsletter_view(request):
     if request.method == 'POST':

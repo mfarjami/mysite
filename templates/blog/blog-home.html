@@ -106,7 +106,7 @@
 									</div>
 									<a class="posts-title" href="{% url 'blog:single' pk=post.id %}"><h3>{{ post.title }}</h3></a>
 									<p class="excert">
-										{{ post.content|truncatechars:200 }}
+										{{ post.content|safe|truncatechars:200 }}
 									</p>
 									<a href="{% url 'blog:single' pk=post.id %}" class="primary-btn">View More</a>
 								</div>
@@ -140,29 +140,6 @@
 		                            </li>
 		                        </ul>
 		                    </nav>
-							<!-- {% for contact in page_obj %}
-								{# Each "contact" is a Contact model object. #}
-								{{ contact.full_name|upper }}<br>
-								...
-							{% endfor %}
-
-							<div class="pagination">
-								<span class="step-links">
-									{% if posts.has_previous %}
-										<a href="?page=1">&laquo; first</a>
-										<a href="?page={{ posts.previous_page_number }}">previous</a>
-									{% endif %}
-
-									<span class="current">
-										Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-									</span>
-
-									{% if posts.has_next %}
-										<a href="?page={{ posts.next_page_number }}">next</a>
-										<a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
-									{% endif %}
-								</span>
-							</div> -->
 						</div>
 						<div class="col-lg-4 sidebar-widgets">
 							<div class="widget-wrap">

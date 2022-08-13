@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from taggit.managers import TaggableManager
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 
@@ -18,7 +18,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='blog', default='blog/default.jpg')
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ManyToManyField(Category)
-    content = models.TextField()
+    content = RichTextUploadingField()
     tags = TaggableManager()
     counted_views = models.IntegerField(default=0)
     published_date = models.DateTimeField(auto_now_add=True)

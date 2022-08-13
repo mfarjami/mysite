@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'robots',
     'taggit',
+    'ckeditor',
+    'ckeditor_uploader',
      # Add your apps here
     'website.apps.WebsiteConfig',     
     'blog.apps.BlogConfig',     
@@ -136,6 +138,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 
 
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category
+from .models import Post, Category, Comment
 # Register your models here.
 
 @admin.register(Post)
@@ -10,5 +10,13 @@ class AdminPost(admin.ModelAdmin):
     list_filter = ('status', 'author')
     search_fields = ('title', 'content')
 
+@admin.register(Comment)
+class AdminComment(admin.ModelAdmin):
+    date_hierarchy = 'created_date'
+    list_display = ('name', 'email', 'approved', 'created_date')
+    list_filter = ('approved',)
+    search_fields = ('name', 'email', 'subject', 'message')
+
+    
 admin.site.register(Category)
 

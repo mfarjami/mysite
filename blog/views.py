@@ -1,7 +1,8 @@
-from pydoc import pager
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from .models import Post
+from django.contrib import messages
+from .models import Post, Comment
+from .forms import CommentForm
 # Create your views here.
 
 
@@ -21,8 +22,19 @@ def blog_view(request, **kwargs):
 
 
 def blog_single(request, pk):
-    post = get_object_or_404(Post, pk=pk, status=1)
-    return render(request, 'blog/blog-single.html', {'post': post})
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message submited sucsessfully')    
+        else:
+            messages.error(request, 'Your message did not submited')
+    post =  get_object_or_404(Post, pk=pk, status=True)
+    comments = Comment.objects.filter(post=post, approved=1)
+    form = CommentForm()
+    context = {'post': post, 'comments': comments, 'form': form}
+    return render(request, 'blog/blog-single.html', context)
+
 
 def blog_search(request):
     posts=Post.objects.filter(status=True)
@@ -31,3 +43,7 @@ def blog_search(request):
             posts = posts.filter(content__contains=s)
     context = {'posts': posts}
     return render(request, 'blog/blog-home.html', context)
+
+
+
+

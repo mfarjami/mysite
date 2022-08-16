@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'captcha',
      # Add your apps here
     'website.apps.WebsiteConfig',     
-    'blog.apps.BlogConfig',     
+    'blog.apps.BlogConfig',    
+    'accounts.apps.AccountsConfig',    
 ]
 
 SITE_ID = 2
